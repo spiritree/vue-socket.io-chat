@@ -1,0 +1,7 @@
+.chat-panel {
+  height: 40rem;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
+.message-list {}
