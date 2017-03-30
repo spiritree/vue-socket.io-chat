@@ -1,7 +1,9 @@
-  .chat-panel {
+.chat-panel {
   height: 40rem;
   overflow-x: hidden;
   overflow-y: scroll;
 }
 
-.message-list {
+.input-group {
+  margin-top: 33rem;
+}
