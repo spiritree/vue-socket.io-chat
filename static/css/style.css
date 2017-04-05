@@ -4,6 +4,6 @@
   overflow-y: scroll;
 }
 
-.input-group {
-  margin-top: 33rem;
+#form-chat {
+  margin-bottom: -4rem;
 }

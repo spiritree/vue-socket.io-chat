@@ -15,14 +15,15 @@
         </div>
         <div class="panel-body chat-panel">
           <div id="message-list">
+
           </div>
-          <form id="form-chat" action="#0">
-            <div class="input-group">
-              <input type="text" id="chattext" class="form-control" placeholder="输入你想要发送的消息">
-              <span class="input-group-btn"><button class="btn btn-default" type="submit">Send</button></span>
-            </div>
-          </form>
         </div>
+        <form id="form-chat">
+          <div class="input-group">
+            <input type="text" id="chattext" class="form-control" placeholder="输入你想要发送的消息">
+            <span class="input-group-btn"><button class="btn btn-default" type="submit">Send</button></span>
+          </div>
+        </form>
       </div>
     </div>
     <div class="col-xs-4 pull-right">
@@ -32,6 +33,7 @@
         </div>
         <div class="panel-body chat-panel">
           <div id="user-list">
+            <span id="userName"></span>
           </div>
         </div>
       </div>

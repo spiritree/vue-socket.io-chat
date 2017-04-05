@@ -14,9 +14,16 @@ app.get('/', function(req, res) {
 
 io.on('connection', function(socket) {
   var user = '';
-  socket.on('chat message', function(msg) {
-    io.emit('chat message', msg);
-    console.log(msg);
+
+  socket.on('join', function(userName) {
+    user = userName;
+    // 通知房间内人员
+    console.log(user + '加入了');
+  });
+
+  socket.on('chatmessage', function(msg) {
+    // 接受用户信息
+    io.emit('chatmessage', msg);
   });
 });
 
