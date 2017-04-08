@@ -2,36 +2,42 @@ $(function() {
   var vmUserList = new Vue({
     el: '#user-list',
     data: {
-      users: []
+      users: [
+      ]
     }
   });
 
-  //设置ID
-  var userName = '';
-  while ($('#userName').text().trim() === '') {
-    userName = prompt("请设置你的ID", "");
-    $('#userName').append(userName);
-  }
+// 监听输入昵称
+  var model = new Vue({
+    el: '#getName',
+    data: {
+      name: ''
+    }
+  })
+
+  window.vmUserList = vmUserList;
+  window.model = model;
 
   var socket = io();
 
   // 加入房间
-  socket.on('connect', function() {
-    socket.emit('join', userName);
-  });
+    socket.on('connect', function() {
+      socket.emit('join', model.name);
+    });
 
+  // 发送消息
   $('form').submit(function() {
-    socket.emit('chatmessage', $('#chattext').val());
+    socket.emit('chatmessage', 'Name:' + model.name);
+    socket.emit('chatmessage', 'Text:' + $('#chattext').val());
     $('#chattext').val('');
     return false;
   });
 
   // 监听消息
-  socket.on('chatmessage', function(msg) {
+  socket.on('chatmessage', function(message) {
     var message = '' +
       '<div>' +
-      '  <span>' + userName + ': </span>' +
-      '  <span>' + msg + '</span>' +
+      '  <span>' + message + '</span>' +
       '</div>';
     $('#message-list').append(message);
   })

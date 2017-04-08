@@ -1,9 +1,9 @@
 .chat-panel {
-  height: 40rem;
+  height: 35rem;
   overflow-x: hidden;
   overflow-y: scroll;
 }
 
 #form-chat {
-  margin-bottom: -4rem;
+  margin-bottom: -18rem;
 }

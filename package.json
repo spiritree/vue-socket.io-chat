@@ -4,6 +4,7 @@
   "description": "nodejs-chatroom",
   "dependencies": {
     "express": "^4.15.2",
+    "pug": "^2.0.0-beta11",
     "socket.io": "^1.7.3"
   }
 }
