@@ -41,4 +41,8 @@ $(function() {
       '</div>';
     $('#message-list').append(message);
   })
-});
+
+  socket.on('updateUser', function(data) {
+    vmUserList.users.push({username: model.name});
+    })
+  });

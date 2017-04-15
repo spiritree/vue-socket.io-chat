@@ -3,7 +3,10 @@ var app = express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 var port = process.env.PORT || 3000;
+var multithread;
 
+// 在线列表
+var userList = [];
 // // 设置模板引擎为pug
 // app.set('view engine', 'pug');
 
@@ -21,15 +24,19 @@ app.get('/', (req, res) => {
 io.on('connection', function(socket) {
   var user = '';
 
-  // socket.on('join', function(userName) {
-  //   // 通知房间内人员
-  //   console.log(user + '加入了');
-  // });
+  socket.on('setUser', function(data) {
+    user = data;
+    userList.push(user);
+  });
 
   socket.on('chatmessage', function(message) {
     // 接受用户信息
     io.emit('chatmessage', message);
   });
+
+  socket.on('disconnect', function(socket) {
+    
+  })
 });
 
 http.listen(port, function() {
