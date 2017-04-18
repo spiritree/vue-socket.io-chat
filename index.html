@@ -7,6 +7,26 @@
 </head>
 
 <body>
+
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">请输入你的昵称</h4>
+      </div>
+      <form id='form-name'>
+      <div class="modal-body">
+        <input type="text" class="form-control" id="nametext" placeholder="">
+      </div>
+      <div class="modal-footer">
+        <button id="setName" type="button" class="btn btn-default" data-dismiss="modal">OK</>  
+      </div>
+      </form>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
   <div class="container">
     <div class="col-xs-8">
       <div class="panel panel-default">
@@ -22,14 +42,10 @@
     <form id="form-chat">
       <form class="form-inline">
         <div class="form-group">
-          <label>Name</label>
-          <input id="getName" v-model="name" class="form-control" placeholder="请输入你的昵称">
-        </div>
-        <div class="form-group">
           <label>Text</label>
           <input type="text" class="form-control" id="chattext" placeholder="请输入你要发送的消息">
         </div>
-        <button type="submit" class="btn btn-default">Send</button>
+        <button id='sendText' type="submit" class="btn btn-default">Send</button>
       </form>
     </form>
         </div>
@@ -42,9 +58,9 @@
         </div>
         <div class="panel-body chat-panel">
           <div id="user-list">
-            <li id='username' v-for="user in users">
+            <!--<li id='username' v-for="user in users">
               {{ user.username }}
-            </li>
+            </li>-->
           </div>
         </div>
       </div>

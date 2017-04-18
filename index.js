@@ -24,15 +24,21 @@ app.get('/', (req, res) => {
 io.on('connection', function(socket) {
   var user = '';
 
-  socket.on('setUser', function(data) {
-    user = data;
+  socket.on('join', function(Name) {
+    user = Name;
     userList.push(user);
+    console.log(user);
+    console.log(userList[0],userList[1]);
   });
 
+  // 接受用户信息
   socket.on('chatmessage', function(message) {
-    // 接受用户信息
     io.emit('chatmessage', message);
   });
+
+  socket.on('userList', function(data) {
+    io.emit('userList', data);
+  })
 
   socket.on('disconnect', function(socket) {
     
