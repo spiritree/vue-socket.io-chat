@@ -24,8 +24,8 @@ app.get('/', (req, res) => {
 io.on('connection', function(socket) {
   var user = '';
 
-  socket.on('join', function(Name) {
-    user = Name;
+  socket.on('join', function(data) {
+    user = data;
     userList.push(user);
     console.log(user);
     console.log(userList[0],userList[1]);
@@ -36,12 +36,14 @@ io.on('connection', function(socket) {
     io.emit('chatmessage', message);
   });
 
+  // 接受用户名称
   socket.on('userList', function(data) {
     io.emit('userList', data);
   })
 
-  socket.on('disconnect', function(socket) {
-    
+  // 用户退出
+  socket.on('dis', function(data) {
+    io.emit('dis', data);
   })
 });
 
