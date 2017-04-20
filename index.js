@@ -7,11 +7,6 @@ var multithread;
 
 // 在线列表
 var userList = [];
-// // 设置模板引擎为pug
-// app.set('view engine', 'pug');
-
-// // 设置目录view为模板目录
-// app.set('views', 'view');
 
 // 读取目录static下的文件
 app.use('/static', express.static('static'));
