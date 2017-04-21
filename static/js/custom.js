@@ -28,10 +28,15 @@ $(function() {
   });
 
   // 设置用户名
-  $('#setName').on('click', function() {
+  // $('#setName').on('click', function() {
+  //   socket.emit('userList', $('#nametext').val());
+  //   return false;
+  // });
+  // 在模态框关闭触发事件
+  $('#myModal').on('hidden.bs.modal', function (e) {
     socket.emit('userList', $('#nametext').val());
     return false;
-  });
+})
 
   // 监听用户列表
   socket.on('userList', function(data) {
