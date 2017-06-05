@@ -6,7 +6,7 @@ var port = process.env.PORT || 3000;
 var multithread;
 
 // 在线列表
-var userList = [];
+var connectList = [];
 
 // 读取目录static下的文件
 app.use('/static', express.static('static'));

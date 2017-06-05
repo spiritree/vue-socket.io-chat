@@ -46,6 +46,7 @@ $(function() {
   // 删除用户列表中的用户
   $('#exit').on('click', function() {
     socket.emit('dis', $('#nametext').val());
+    $('#nametext').val('');
     return false;
     // var userid = $('#nametext').val();
     // $('#' + userid).remove();
