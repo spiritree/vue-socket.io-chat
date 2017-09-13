@@ -30,4 +30,4 @@ TODO
 利用`socket.on`绑定事件，`socket.emit`触发事件，实现服务器和客户端的实时交互
 
 ## TODO LIST
-- [] 用Vue重构前端
+- [ ] 用Vue重构前端

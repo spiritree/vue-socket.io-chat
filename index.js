@@ -1,24 +1,20 @@
-var express = require('express');
-var app = express();
-var http = require('http').Server(app);
-var io = require('socket.io')(http);
-var port = process.env.PORT || 3000;
-var multithread;
-
-// 在线列表
-var connectList = [];
+const express = require('express');
+const app = express();
+const http = require('http').Server(app);
+const io = require('socket.io')(http);
+const port = process.env.PORT || 8989;
 
 // 读取目录static下的文件
-app.use('/static', express.static('static'));
+app.use('/static', express.static('dist/static'));
 
 // 读取根目录下的index.html
 app.get('/', (req, res) => {
-  res.sendFile(__dirname + '/index.html');
+  res.sendFile(__dirname + '/dist/index.html');
 });
 
 io.on('connection', function(socket) {
   var user = '';
-
+  console.log('find a person');
   socket.on('join', function(data) {
     user = data;
     userList.push(user);
