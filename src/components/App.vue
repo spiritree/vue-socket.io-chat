@@ -21,7 +21,6 @@
 <script>
 import ThreadSection from './ThreadSection.vue'
 import MessageSection from './MessageSection.vue'
-import Modal from 'iview/src/components/modal'
 
 export default {
   name: 'App',
@@ -35,6 +34,13 @@ export default {
       formItem: {
         name: ''
       }
+    }
+  },
+  methods: {
+    ok() {
+      console.log('ok');
+    },
+    cancel() {
     }
   }
 }
