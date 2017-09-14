@@ -1,23 +1,23 @@
 # Socket.io实现web在线聊天室
 
-[![Build Status](https://img.shields.io/travis/spiritree/socket.io-chat/master.svg?style=flat-square)](https://travis-ci.org/spiritree/socket.io-chat)
+[![Build Status](https://img.shields.io/travis/spiritree/vue-socket.io-chat/master.svg?style=flat-square)](https://travis-ci.org/spiritree/vue-socket.io-chat)
 
 ## 项目介绍
-技术栈：Express + Socket.io + JQuery + Bootstrap
+技术栈：Vue + iView + socket.io + Express
 
 ### 安装和使用
 从github clone项目
 
-`git clone https://github.com/SpiriTree/Socket.io-chat.git`
+`git clone https://github.com/spiritree/vue-socket.io-chat.git`
 
 安装依赖
 `npm install`
 
 启动服务
-`node index.js`
+`node index`
 
 访问
-`http://localhost:3000/`
+`http://localhost:8989/`
 
 ### 预览地址
 TODO
