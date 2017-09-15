@@ -6,12 +6,13 @@
     <message-section></message-section>
     <Modal
         v-model="modal1"
-        title="请输入你的昵称"
+        title="请输入昵称"
         @on-ok="ok"
-        @on-cancel="cancel">
-        <Form :model="formItem" label-position="right" :label-width="80">
-          <FormItem label="名称">
-            <Input v-model="formItem.name" placeholder="请输入"></Input>
+        :loading="loading"
+        >
+        <Form ref="formItem" :model="formItem" label-position="right" :rules="rule" :label-width="80">
+          <FormItem label="名称" prop="name">
+            <Input v-model="formItem.name" placeholder="请输入昵称"></Input>
           </FormItem>
         </Form>
     </Modal>
@@ -31,16 +32,29 @@ export default {
   data() {
     return {
       modal1: true,
+      loading: true,
       formItem: {
         name: ''
+      },
+      rule: {
+        require: true
       }
     }
   },
   methods: {
     ok() {
-      console.log('ok');
-    },
-    cancel() {
+      if (this.formItem.name === '') {
+        this.$Message.error('请输入昵称')
+        this.loading = false;
+        this.$nextTick(() => {
+          this.loading = true;
+        });
+      } else {
+        this.loading = false;
+        console.log(this.formItem.name)
+        console.log(store.state.userCount)
+        this.modal1 = false;
+      }
     }
   }
 }

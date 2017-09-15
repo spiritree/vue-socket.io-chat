@@ -1,8 +1,11 @@
 <template>
   <div class="thread-section">
     <div class="thread-count">
-      <span v-show="unreadCount">
-        Unread threads: {{ unreadCount }}
+      <span>
+        在线列表: {{ }}
+      </span>
+      <span>
+        总人数: {{  }}
       </span>
     </div>
     <ul class="thread-list">
@@ -29,14 +32,6 @@ export default {
       'threads',
       'currentThread'
     ]),
-    unreadCount () {
-      const threads = this.threads
-      return Object.keys(threads).reduce((count, id) => {
-        return threads[id].lastMessage.isRead
-          ? count
-          : count + 1
-      }, 0)
-    }
   },
   methods: {
     switchThread (id) {
