@@ -26,6 +26,14 @@ export default {
 
   [types.SWITCH_THREAD] (state, { id }) {
     setCurrentThread(state, id)
+  },
+
+  [types.ADD_USERNUMBER] (state) {
+    addUserNumber(state)
+  },
+
+  [types.ADD_USERNAME] (state, { userName }) {
+    addUserName(state, userName)
   }
 }
 
@@ -58,4 +66,12 @@ function setCurrentThread (state, id) {
   }
   // mark thread as read
   state.threads[id].lastMessage.isRead = true
+}
+
+function addUserNumber (state) {
+  state.userCount++
+}
+
+function addUserName (state, userName) {
+  state.userName.push(userName)
 }

@@ -20,3 +20,11 @@ export const sendMessage = ({ commit }, payload) => {
 export const switchThread = ({ commit }, payload) => {
   commit(types.SWITCH_THREAD, payload)
 }
+
+export const addUserNumber = ({ commit }) => {
+  commit(types.ADD_USERNUMBER)
+}
+
+export const addUserName = ({ commit }, payload) => {
+  commit(types.ADD_USERNAME, payload)
+}

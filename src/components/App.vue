@@ -45,15 +45,18 @@ export default {
     ok() {
       if (this.formItem.name === '') {
         this.$Message.error('请输入昵称')
-        this.loading = false;
+        this.loading = false
         this.$nextTick(() => {
-          this.loading = true;
-        });
+          this.loading = true
+        })
       } else {
-        this.loading = false;
-        console.log(this.formItem.name)
-        console.log(store.state.userCount)
-        this.modal1 = false;
+        const userName = this.formItem.name
+        const userNo = this.$store.state.userName.length
+        this.$store.dispatch('addUserName', {
+          userName,
+        })
+        this.$store.dispatch('addUserNumber')
+        this.modal1 = false
       }
     }
   }

@@ -8,7 +8,7 @@ export function getAllMessages (cb) {
   }, LATENCY)
 }
 
-export function createMessage ({ text, thread }, cb) {
+export function createMessage ({ text, thread, userName }, cb) {
   const timestamp = Date.now()
   const id = 'm_' + timestamp
   const message = {
@@ -17,7 +17,7 @@ export function createMessage ({ text, thread }, cb) {
     timestamp,
     threadID: thread.id,
     threadName: thread.name,
-    authorName: 'Evan'
+    authorName: userName[0]
   }
   setTimeout(function () {
     cb(message)

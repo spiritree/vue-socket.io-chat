@@ -8,7 +8,7 @@
         :message="message">
       </message>
     </ul>
-    <textarea class="message-composer" @keyup.enter="sendMessage"></textarea>
+    <textarea v-show="isShow" class="message-composer" @keyup.enter="sendMessage"></textarea>
   </div>
 </template>
 
@@ -28,6 +28,13 @@ export default {
       return this.messages
         .slice()
         .sort((a, b) => a.timestamp - b.timestamp)
+    },
+    isShow () {
+      if(this.$store.state.userName.length === 0) {
+        return false
+      } else {
+        return true
+      }
     }
   },
   watch: {
@@ -44,7 +51,8 @@ export default {
       if (text.trim()) {
         this.$store.dispatch('sendMessage', {
           text,
-          thread: this.thread
+          thread: this.thread,
+          userName: this.$store.state.userName
         })
         e.target.value = ''
       }
