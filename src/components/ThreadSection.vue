@@ -1,9 +1,9 @@
 <template>
   <div class="thread-section">
     <div class="thread-count">
-      <h4>
+      <h3>
         总人数: {{ $store.state.userCount }}
-      </h4>
+      </h3>
     </div>
     <ul class="thread-list">
       <thread

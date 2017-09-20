@@ -63,6 +63,10 @@
   margin: 0;
 }
 
+.user-name {
+
+}
+
 .message-time, .thread-time {
   color: #aad;
   float: right;
