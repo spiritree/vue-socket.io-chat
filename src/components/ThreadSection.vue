@@ -1,8 +1,9 @@
 <template>
   <div class="thread-section">
     <div class="thread-count">
+      <i class="icon-people"></i>
       <h3>
-        总人数: {{ $store.state.userCount }}
+        总人数: {{ count }}
       </h3>
     </div>
     <ul class="thread-list">
@@ -31,6 +32,9 @@ export default {
       'threads',
       'currentThread'
     ]),
+    count() {
+      return localStorage.count
+    }
   },
   methods: {
     switchThread (id) {
@@ -39,3 +43,13 @@ export default {
   }
 }
 </script>
+<style lang="scss" scoped>
+    i.icon-people {
+        width: 26.4px;
+        height: 26.4px;
+        background: url('../assets/people.svg') no-repeat;
+        background-size: contain;
+        float: left;
+        margin-right: 9px;
+    }
+</style>

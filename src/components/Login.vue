@@ -1,6 +1,7 @@
 <template>
-  <transition>
+  <transition name="fade">
     <div id="login">
+      <i class="icon-chat"></i>
       <h2>请输入您的名字</h2>
       <input @keyup.enter="login" v-model.trim="name" type="text" autofocus>
     </div>
@@ -12,7 +13,7 @@ export default {
   name: 'login',
   data() {
     return {
-      name: ''
+      name: '',
     }
   },
   methods: {
@@ -21,20 +22,27 @@ export default {
         return
       }
       const userName = this.name
+      let count = 0
+      count++
+      let userNameList = []
+      userNameList.push(userName)
       this.$store.dispatch('addUserName', {
         userName
       })
       this.$store.dispatch('addUserNumber')
       localStorage.name = this.name
-      this.$router.push('chat')
+      localStorage.count = count
+      // localStorage存数组
+      localStorage.setItem('userNameList', JSON.stringify(userNameList))
+      this.$router.push({ path:'chat' })
     }
   }
 }
 </script>
 
 <style lang="scss" scoped>
-    $vue-black-color: #2c3e50;
-    $vue-color: #42b983;
+    $purple-color: #5e63b6;
+    $purple-dark-color: #27296D;
     #login {
         position: absolute;
         display: flex;
@@ -48,8 +56,15 @@ export default {
         width: 100%;
         height: 100%;
         background-color: #fff;
-        color: $vue-color;
+        color: $purple-color;
         border: none;
+    }
+    i.icon-chat {
+        width: 60px;
+        height: 60px;
+        background: url('../assets/chat.svg') no-repeat;
+        background-size: contain;
+        margin-bottom: 30px;
     }
     h2 {
         font-weight: 400;
@@ -61,10 +76,16 @@ export default {
         padding: 5px 10px;
         margin-top: 10px;
         background-color: #fff;
-        color: $vue-black-color;
-        border-bottom: 1px solid $vue-black-color;
+        color: $purple-dark-color;
+        border-bottom: 1px solid $purple-dark-color;
         text-align: center;
         font-size: 2rem;
         letter-spacing: 2px;
+    }
+    .fade-enter-active, .fade-leave-active {
+      transition: opacity .5s
+    }
+    .fade-enter, .fade-leave-to {
+      opacity: 0
     }
 </style>

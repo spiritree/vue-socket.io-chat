@@ -26,7 +26,7 @@ export function createMessage ({ text, thread, userName }, callback) {
     timestamp,
     threadID: thread.id,
     threadName: thread.name,
-    authorName: userName[0]
+    authorName: userName
   }
   callback(message)
 }

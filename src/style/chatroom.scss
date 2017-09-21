@@ -1,4 +1,5 @@
- .chatapp {
+$purple-dark-color: #27296D;
+.chatapp {
   font-family: 'Muli', 'Helvetica Neue', helvetica, arial;
   max-width: 760px;
   margin: 20px auto;
@@ -24,6 +25,10 @@
   width: 32.5%;
 }
 
+.message-thread-heading {
+  color: $purple-dark-color; 
+}
+
 .message-thread-heading,
 .thread-count {
   height: 40px;
@@ -33,6 +38,12 @@
 .message-list-item, .thread-list-item {
   list-style: none;
   padding: 12px 14px 14px;
+}
+
+.thread-count {
+  h3 {
+    color: $purple-dark-color;
+  }
 }
 
 .thread-list-item {

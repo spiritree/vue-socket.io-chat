@@ -12,7 +12,6 @@
   },
   "dependencies": {
     "express": "^4.15.2",
-    "iview": "^2.3.2",
     "socket.io": "^2.0.3",
     "vue": "^2.4.2",
     "vue-router": "^2.7.0",

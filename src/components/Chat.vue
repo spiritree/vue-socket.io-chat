@@ -1,7 +1,3 @@
-<style lang="scss">
-@import "../style/chatroom.scss";
-</style>
-
 <template>
   <div class="chatapp">
     <thread-section></thread-section>
@@ -24,9 +20,23 @@ export default {
 
     }
   },
+  beforeRouteEnter(to, from, next) {
+    if (!localStorage.name) {
+      next('/')
+    } else {
+      next();
+    }
+  },
+  mounted() {
+    
+  },
   methods: {
     
   
   }
 }
 </script>
+
+<style lang="scss">
+@import "../style/chatroom.scss"
+</style>

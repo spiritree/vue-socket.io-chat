@@ -1,5 +1,6 @@
 <template>
   <div class="message-section">
+    <i class="icon-chatrooms"></i>
     <h3 class="message-thread-heading">{{ thread.name }}</h3>
     <ul class="message-list" ref="list">
       <message
@@ -45,17 +46,28 @@ export default {
         this.$store.dispatch('sendMessage', {
           text,
           thread: this.thread,
-          userName: this.$store.state.userName
+          userName: localStorage.name
         })
         e.target.value = ''
       }
     }
+  },
+  mounted() {
+    console.log(localStorage.name)
   }
 }
 </script>
 <style lang="scss" scoped>
-  textarea {
-    border: 1px solid #ccf;
-    resize: none;
-  }
+    textarea {
+        border: 1px solid #ccf;
+        resize: none;
+    }
+    i.icon-chatrooms {
+        width: 26.4px;
+        height: 26.4px;
+        background: url('../assets/chatrooms.svg') no-repeat;
+        background-size: contain;
+        float: left;
+        margin-right: 9px;
+    }
 </style>

@@ -3,12 +3,8 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import App from './components/App.vue'
 import router from './router'
-import 'iview/dist/styles/iview.css'
-import iView from 'iview';
 import store from './store'
 import { getAllMessages } from './store/actions'
-
-Vue.use(iView)
 
 Vue.filter('time', timestamp => {
   return new Date(timestamp).toLocaleTimeString()
