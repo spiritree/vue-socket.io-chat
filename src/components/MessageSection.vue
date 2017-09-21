@@ -53,7 +53,7 @@ export default {
     }
   },
   mounted() {
-    console.log(localStorage.name)
+    
   }
 }
 </script>
