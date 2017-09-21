@@ -25,6 +25,7 @@ export default {
         userName
       })
       this.$store.dispatch('addUserNumber')
+      localStorage.name = this.name
       this.$router.push('chat')
     }
   }

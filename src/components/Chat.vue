@@ -1,4 +1,6 @@
-<style src="../css/chatroom.css"></style>
+<style lang="scss">
+@import "../style/chatroom.scss";
+</style>
 
 <template>
   <div class="chatapp">
