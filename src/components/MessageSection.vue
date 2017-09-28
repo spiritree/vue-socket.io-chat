@@ -4,12 +4,12 @@
     <h3 class="message-thread-heading">{{ thread.name }}</h3>
     <ul class="message-list" ref="list">
       <message
-        v-for="message in sortedMessages"
+        v-for="message in messages"
         :key="message.id"
         :message="message">
       </message>
     </ul>
-    <textarea class="message-composer" @keyup.enter="sendMessage"></textarea>
+    <textarea class="message-composer" @keyup.enter="sendBySocket"></textarea>
   </div>
 </template>
 
@@ -40,20 +40,35 @@ export default {
     }
   },
   methods: {
-    sendMessage (e) {
-      const text = e.target.value
-      if (text.trim()) {
+    socketEvent() {
+      socket.on('boardcastMessage', (data) => {
+        const text = data.text
+        const name = data.name
         this.$store.dispatch('sendMessage', {
           text,
           thread: this.thread,
-          userName: localStorage.name
+          userName: name
         })
-        e.target.value = ''
+      })
+    },
+    sendBySocket(e) {
+      const text = e.target.value
+      if (text.trim()) {
+        socket.emit('sendMessage', {
+          id: 'm_1',
+          text: text,
+          threadID: 't_1',
+          name: localStorage.name
+        })
       }
-    }
+      e.target.value = ''
+    },
+  },
+  created() {
+    this.socketEvent()
   },
   mounted() {
-    
+    console.log(this.messages)
   }
 }
 </script>

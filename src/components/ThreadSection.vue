@@ -24,22 +24,35 @@ import Thread from './Thread.vue'
 import UserList from './UserList'
 import { mapGetters } from 'vuex'
 
+
 export default {
   name: 'ThreadSection',
   components: { Thread, UserList },
+  data() {
+    return {
+      count: ''
+    }
+  },
   computed: {
     ...mapGetters([
       'threads',
       'currentThread'
-    ]),
-    count() {
-      return localStorage.count
-    }
+    ])
   },
   methods: {
     switchThread (id) {
       this.$store.dispatch('switchThread', { id })
+    },
+    socketEvent() {
+      socket.on('transferCurrentData', (data) => {
+        this.count = data.count
+        // // 对应mutation
+        // this.$store.commit('ADD_USERNUMBER')
+      })
     }
+  },
+  created() {
+    this.socketEvent()
   }
 }
 </script>

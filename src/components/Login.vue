@@ -9,6 +9,8 @@
 </template>
 
 <script>
+
+
 export default {
   name: 'login',
   data() {
@@ -21,21 +23,24 @@ export default {
       if(this.name === '') {
         return
       }
-      const userName = this.name
+      const name = this.name
       let count = 0
       count++
       let userNameList = []
-      userNameList.push(userName)
+      userNameList.push(name)
       this.$store.dispatch('addUserName', {
-        userName
+        name
       })
       this.$store.dispatch('addUserNumber')
       localStorage.name = this.name
       localStorage.count = count
+      socket.emit('login', localStorage.name)
       // localStorage存数组
       localStorage.setItem('userNameList', JSON.stringify(userNameList))
       this.$router.push({ path:'chat' })
     }
+  },
+  mounted() {
   }
 }
 </script>

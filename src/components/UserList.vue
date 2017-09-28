@@ -14,11 +14,18 @@ export default {
   name: 'UserList',
   data() {
     return {
-      userNameList: JSON.parse(localStorage.getItem('userNameList'))
+      userNameList: []
     }
   },
-  mounted() {
-    
+  created() {
+    this.connectEvent()
+  },
+  methods: {
+    connectEvent() {
+      socket.on('transferCurrentData', (data) => {
+        this.userNameList = data.userList
+      })
+    }
   }
 }
 </script>
