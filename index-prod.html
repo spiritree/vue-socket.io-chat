@@ -8,8 +8,10 @@
     <div id="app"></div>
     <!-- built files will be auto injected -->
   </body>
-  <script src="https://cdn.bootcss.com/socket.io/2.0.3/socket.io.js"></script>
-  <script type="text/javascript">
-    var socket = io.connect('http://localhost:8989/');
+  <!-- 这是个坑 -->
+  <script src="https://app.spiritree.me:443/socket.io/socket.io.js"></script>
+  
+  <script>
+      var socket = io.connect('https://app.spiritree.me:443/');
   </script>
 </html>

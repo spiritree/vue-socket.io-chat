@@ -44,10 +44,11 @@ export default {
       this.$store.dispatch('switchThread', { id })
     },
     socketEvent() {
-      socket.on('transferCurrentData', (data) => {
+      socket.on('transferUserState', (data) => {
         this.count = data.count
-        // // 对应mutation
-        // this.$store.commit('ADD_USERNUMBER')
+      })
+      socket.on('updateUserState', (data) => {
+        this.count = data.count
       })
     }
   },

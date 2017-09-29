@@ -22,7 +22,10 @@ export default {
   },
   methods: {
     connectEvent() {
-      socket.on('transferCurrentData', (data) => {
+      socket.on('transferUserState', (data) => {
+        this.userNameList = data.userList
+      })
+      socket.on('updateUserState', (data) => {
         this.userNameList = data.userList
       })
     }

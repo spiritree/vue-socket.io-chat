@@ -1,7 +1,10 @@
-const express = require('express')
+import express from 'express'
+import http from 'http'
+import socketio from 'socket.io'
+
 const app = express()
-const http = require('http').Server(app)
-const io = require('socket.io')(http)
+const httpPort = http.Server(app)
+const io = socketio(httpPort)
 const port = process.env.PORT || 8989
 
 // 读取目录static下的文件
@@ -13,30 +16,49 @@ app.get('/', (req, res) => {
 })
 
 // 在线人数
-var userCount = 0
+let userCount = 0
 
 // 在线用户列表
-var userList = []
+let userList = []
+
+// 在线用户信息
+let userInfoList = []
 
 io.on('connection', (socket) => {
   console.log('find a person')
   socket.on('login', (data) => {
-    socket.socketId = data
     userCount++
     userList.push(data)
+    let userInfo = {id:socket.id, name:data}
+    userInfoList.push(userInfo)
     // 不是socket！是io！否则无法实时传递到每个客户端
-    io.emit('transferCurrentData', {userList: userList, count: userCount})
+    io.emit('transferUserState', {userList: userList, count: userCount})
   })
 
   socket.on('sendMessage', (data) => {
-    console.log(data.text)
-    console.log(data.name)
     io.emit('boardcastMessage', data)
+  })
+
+  socket.on('disconnect', (data) => {
+    console.log('dis')
+    for(let userInfo of userInfoList) {
+      if(userInfo.id === socket.id) {
+        // console.log(userInfo.name)
+        const findDisconnectName = (value) => {
+          return value === userInfo.name
+        }
+        var deleteName = userList.find(findDisconnectName)
+      }
+    }
+    const deleteIndex = userList.findIndex((value) => {
+      return value === deleteName
+    })
+    userCount--
+    userList.splice(deleteIndex, 1)
+    io.emit('updateUserState', {count: userCount, userList: userList})
   })
 })
 
-
-
-http.listen(port, () => {
+httpPort.listen(port, () => {
   console.log('listening on *:' + port);
 })
