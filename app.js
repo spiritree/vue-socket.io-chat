@@ -48,14 +48,14 @@ io.on('connection', (socket) => {
           return value === userInfo.name
         }
         var deleteName = userList.find(findDisconnectName)
+        const deleteIndex = userList.findIndex((value) => {
+          return value === deleteName
+        })
+        userCount--
+        userList.splice(deleteIndex, 1)
+        io.emit('updateUserState', {count: userCount, userList: userList})
       }
     }
-    const deleteIndex = userList.findIndex((value) => {
-      return value === deleteName
-    })
-    userCount--
-    userList.splice(deleteIndex, 1)
-    io.emit('updateUserState', {count: userCount, userList: userList})
   })
 })
 
