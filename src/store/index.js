@@ -8,7 +8,7 @@ Vue.use(Vuex)
 
 const state = {
   currentThreadID: null,
-  Count: 0,
+  userCount: 0,
   userName: [],
   threads: {
     /*

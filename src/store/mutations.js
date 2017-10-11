@@ -69,7 +69,7 @@ function setCurrentThread (state, id) {
 }
 
 function addUserNumber (state) {
-  state.Count++
+  state.userCount++
 }
 
 function addUserName (state, userName) {

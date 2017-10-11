@@ -68,7 +68,6 @@ export default {
     this.socketEvent()
   },
   mounted() {
-    console.log(this.messages)
   }
 }
 </script>

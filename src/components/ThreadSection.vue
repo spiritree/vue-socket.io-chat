@@ -54,6 +54,11 @@ export default {
   },
   created() {
     this.socketEvent()
+  },
+  beforeMount() {
+    if (this.$store.state.userCount === 0) {
+      this.$router.push({ path: '/' })
+    }
   }
 }
 </script>

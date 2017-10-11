@@ -24,16 +24,10 @@ export default {
         return
       }
       const name = this.name
-      let count = 0
-      count++
       let userNameList = []
       userNameList.push(name)
-      this.$store.dispatch('addUserName', {
-        name
-      })
       this.$store.dispatch('addUserNumber')
       localStorage.name = this.name
-      localStorage.count = count
       socket.emit('login', localStorage.name)
       // localStorage存数组
       localStorage.setItem('userNameList', JSON.stringify(userNameList))

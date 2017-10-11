@@ -40,7 +40,7 @@ io.on('connection', (socket) => {
   })
 
   socket.on('disconnect', (data) => {
-    console.log('dis')
+    console.log('a person disconnected')
     for(let userInfo of userInfoList) {
       if(userInfo.id === socket.id) {
         // console.log(userInfo.name)

@@ -20,15 +20,7 @@ export default {
 
     }
   },
-  beforeRouteEnter(to, from, next) {
-    if (!localStorage.name) {
-      next('/')
-    } else {
-      next();
-    }
-  },
   mounted() {
-    
   },
   methods: {
     
