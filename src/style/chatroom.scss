@@ -1,28 +1,58 @@
 $purple-dark-color: #27296D;
-.chatapp {
+#app {
+  height: 100%;
+  position: relative;
+}
+
+@mixin chatapp {
   font-family: 'Muli', 'Helvetica Neue', helvetica, arial;
-  max-width: 760px;
+  max-width: 80%;
   margin: 20px auto;
   overflow: hidden;
 }
 
-.message-list, .thread-list {
+.chatapp {
+  @include chatapp;
+  @media(max-width: 768px) {
+    @include chatapp;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+@mixin message-list-style {
   border: 1px solid #ccf;
   font-size: 16px;
-  height: 400px;
   margin: 0;
   overflow-y: auto;
   padding: 0;
 }
 
+.message-list, .thread-list {
+  @include message-list-style;
+  height: 400px;
+  @media(max-width: 768px) {
+    @include message-list-style;
+    height: 75%;
+  }
+}
+
 .message-section {
   float: right;
   width: 65%;
+  @media(max-width: 768px) {
+    height: 100%;
+    width: 100%;
+  }
 }
 
 .thread-section {
   float: left;
   width: 32.5%;
+  @media(max-width: 768px) {
+    display: none;
+  }
 }
 
 .message-thread-heading {
@@ -66,18 +96,16 @@ $purple-dark-color: #27296D;
   cursor: default;
 }
 
-.message-author-name,
-.thread-name {
-  color: #66c;
-  float: left;
-  font-size: 13px;
-  margin: 0;
-}
-
 .user-name {
   color: #66c;
   font-size: 13px;
   margin: 0;
+}
+
+.message-author-name,
+.thread-name {
+  @extend .user-name;
+  float: left;
 }
 
 .message-time, .thread-time {
