@@ -11,8 +11,6 @@ export function getAllMessages (callback) {
 }
 
 /**
- * 
- * 
  * @export
  * @param {any} { text, thread, userName } 定义载荷(payload)形式分发的数据
  * @param {any} callback 

@@ -1,6 +1,7 @@
 import express from 'express'
-import http from 'http'
 import socketio from 'socket.io'
+import path from 'path'
+import http from 'http'
 
 const app = express()
 const httpPort = http.Server(app)
@@ -12,7 +13,8 @@ app.use('/static', express.static('dist/static'))
 
 // 读取根目录下的index.html
 app.get('/', (req, res) => {
-  res.sendFile(__dirname + '/dist/index.html')
+  res.sendFile(path.join(__dirname, '../dist/index.html'))
+  // res.sendFile(__dirname + '../dist/index.html')
 })
 
 // 在线人数
@@ -29,10 +31,11 @@ io.on('connection', (socket) => {
   socket.on('login', (data) => {
     userCount++
     userList.push(data)
-    let userInfo = {id:socket.id, name:data}
+    let userInfo = { id: socket.id, name: data }
     userInfoList.push(userInfo)
     // 不是socket！是io！否则无法实时传递到每个客户端
-    io.emit('transferUserState', {userList: userList, count: userCount})
+    io.emit('onlineMessage', { name: data })
+    io.emit('transferUserState', { userList: userList, count: userCount })
   })
 
   socket.on('sendMessage', (data) => {
@@ -41,24 +44,24 @@ io.on('connection', (socket) => {
 
   socket.on('disconnect', (data) => {
     console.log('a person disconnected')
-    for(let userInfo of userInfoList) {
-      if(userInfo.id === socket.id) {
-        // console.log(userInfo.name)
+    for (let userInfo of userInfoList) {
+      if (userInfo.id === socket.id) {
         const findDisconnectName = (value) => {
           return value === userInfo.name
         }
-        var deleteName = userList.find(findDisconnectName)
+        const deleteName = userList.find(findDisconnectName)
         const deleteIndex = userList.findIndex((value) => {
           return value === deleteName
         })
         userCount--
         userList.splice(deleteIndex, 1)
-        io.emit('updateUserState', {count: userCount, userList: userList})
+        io.emit('disconnectMessage', { deleteName: deleteName })
+        io.emit('updateUserState', { count: userCount, userList: userList })
       }
     }
   })
 })
 
 httpPort.listen(port, () => {
-  console.log('listening on *:' + port);
+  console.log('listening on *:' + port)
 })
