@@ -9,7 +9,7 @@
     "start": "node build/dev-server.js",
     "build": "node build/build.js",
     "analyze": "npm_config_preview=true  npm_config_report=true node build/build.js",
-    "server": "node register.js"
+    "server": "node build/build.js&&node server/register.js"
   },
   "dependencies": {
     "express": "^4.15.2",
