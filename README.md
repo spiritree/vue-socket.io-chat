@@ -31,3 +31,4 @@ TODO
 
 ## TODO LIST
 - [ ] 用Vue重构前端
+- [ ] 用TypeScript重构
