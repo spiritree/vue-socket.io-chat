@@ -40,7 +40,7 @@ export default {
     }
   },
   methods: {
-    socketEvent() {
+    socketEvent() {      
       socket.on('boardcastMessage', (data) => {
         const text = data.text
         const name = data.name
@@ -48,6 +48,22 @@ export default {
           text,
           thread: this.thread,
           userName: name
+        })
+      })
+      socket.on('onlineMessage', (data) => {
+        const name = data.name
+        this.$store.dispatch('sendMessage', {
+          text: ` ${name} 进入房间`,
+          thread: this.thread,
+          userName: 'System'
+        })
+      })
+      socket.on('disconnectMessage', (data) => {
+        const name = data.deleteName
+        this.$store.dispatch('sendMessage', {
+          text: ` ${name} 退出房间`,
+          thread: this.thread,
+          userName: 'System'
         })
       })
     },
