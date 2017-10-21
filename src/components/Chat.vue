@@ -5,7 +5,9 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+/// <reference path="../../socket.io.d.ts" />
+
 import ThreadSection from './ThreadSection.vue'
 import MessageSection from './MessageSection.vue'
 
@@ -14,17 +16,6 @@ export default {
   components: {
     ThreadSection,
     MessageSection
-  },
-  data() {
-    return {
-
-    }
-  },
-  mounted() {
-  },
-  methods: {
-    
-  
   }
 }
 </script>

@@ -19,16 +19,18 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+/// <reference path="../../socket.io.d.ts" />
+
 import Thread from './Thread.vue'
-import UserList from './UserList'
+import UserList from './UserList.vue'
 import { mapGetters } from 'vuex'
 
 
 export default {
   name: 'ThreadSection',
   components: { Thread, UserList },
-  data() {
+  data(): any {
     return {
       count: ''
     }
@@ -40,15 +42,21 @@ export default {
     ])
   },
   methods: {
-    switchThread (id) {
+    switchThread (id: string): void{
       this.$store.dispatch('switchThread', { id })
     },
-    socketEvent() {
-      socket.on('transferUserState', (data) => {
-        this.count = data.count
+    socketEvent(): void {
+      socket.on('transferUserNumber', (data: any) => {
+        const count = data.count
+        this.$store.dispatch('updateUserNumber', {
+          count: count
+        })
       })
-      socket.on('updateUserState', (data) => {
-        this.count = data.count
+      socket.on('updateUserNumber', (data: any) => {
+        const count = data.count
+        this.$store.dispatch('updateUserNumber', {
+          count: count
+        })
       })
     }
   },

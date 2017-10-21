@@ -13,7 +13,9 @@
   </li>
 </template>
 
-<script>
+<script lang="ts">
+/// <reference path="../../socket.io.d.ts" />
+
 export default {
   name: 'Thread',
   props: {

@@ -8,7 +8,9 @@
   </li>
 </template>
 
-<script>
+<script lang="ts">
+/// <reference path="../../socket.io.d.ts" />
+
 export default {
   name: 'Message',
   props: {

@@ -13,7 +13,9 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+/// <reference path="../../socket.io.d.ts" />
+
 import Message from './Message.vue'
 import { mapGetters } from 'vuex'
 
@@ -25,14 +27,14 @@ export default {
       thread: 'currentThread',
       messages: 'currentMessages'
     }),
-    sortedMessages () {
+    sortedMessages (): string {
       return this.messages
         .slice()
         .sort((a, b) => a.timestamp - b.timestamp)
     },
   },
   watch: {
-    'thread.lastMessage': function () {
+    'thread.lastMessage': function (): void {
       this.$nextTick(() => {
         const ul = this.$refs.list
         ul.scrollTop = ul.scrollHeight
@@ -40,7 +42,7 @@ export default {
     }
   },
   methods: {
-    socketEvent() {      
+    socketEvent(): void {      
       socket.on('boardcastMessage', (data) => {
         const text = data.text
         const name = data.name
@@ -67,7 +69,7 @@ export default {
         })
       })
     },
-    sendBySocket(e) {
+    sendBySocket(e: any): void {
       const text = e.target.value
       if (text.trim()) {
         socket.emit('sendMessage', {

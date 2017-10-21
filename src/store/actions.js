@@ -25,6 +25,10 @@ export const addUserNumber = ({ commit }) => {
   commit(types.ADD_USERNUMBER)
 }
 
+export const updateUserNumber = ({ commit }, payload) => {
+  commit(types.UPDATE_USERNUMBER, payload)
+}
+
 export const addUserName = ({ commit }, payload) => {
   commit(types.ADD_USERNAME, payload)
 }

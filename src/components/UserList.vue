@@ -9,10 +9,12 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+/// <reference path="../../socket.io.d.ts" />
+
 export default {
   name: 'UserList',
-  data() {
+  data(): any {
     return {
       userNameList: []
     }
@@ -21,14 +23,14 @@ export default {
     this.connectEvent()
   },
   methods: {
-    connectEvent() {
-      socket.on('transferUserState', (data) => {
+    connectEvent(): void {
+      socket.on('transferUserList', (data) => {
         this.userNameList = data.userList
       })
-      socket.on('updateUserState', (data) => {
+      socket.on('updateUserList', (data) => {
         this.userNameList = data.userList
       })
     }
-  }
+  },
 }
 </script>

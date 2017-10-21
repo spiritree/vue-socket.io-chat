@@ -8,23 +8,23 @@
   </transition>
 </template>
 
-<script>
-
+<script lang="ts">
+/// <reference path="../../socket.io.d.ts" />
 
 export default {
   name: 'login',
-  data() {
+  data() :any {
     return {
       name: '',
     }
   },
   methods: {
-    login() {
+    login(): void {
       if(this.name === '') {
         return
       }
-      const name = this.name
-      let userNameList = []
+      const name: string = this.name
+      let userNameList: Array<any> = []
       userNameList.push(name)
       this.$store.dispatch('addUserNumber')
       localStorage.name = this.name

@@ -9,10 +9,11 @@
 
 </template>
 
-<script>
+<script lang="ts">
+/// <reference path="../../socket.io.d.ts" />
 
-import Login from './Login'
-import Chat from './Chat'
+import Login from './Login.vue'
+import Chat from './Chat.vue'
 
 export default {
   name: 'app',

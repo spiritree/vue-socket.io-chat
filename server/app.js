@@ -35,7 +35,8 @@ io.on('connection', (socket) => {
     userInfoList.push(userInfo)
     // 不是socket！是io！否则无法实时传递到每个客户端
     io.emit('onlineMessage', { name: data })
-    io.emit('transferUserState', { userList: userList, count: userCount })
+    io.emit('transferUserNumber', { count: userCount })
+    io.emit('transferUserList', { userList: userList })
   })
 
   socket.on('sendMessage', (data) => {
@@ -56,7 +57,8 @@ io.on('connection', (socket) => {
         userCount--
         userList.splice(deleteIndex, 1)
         io.emit('disconnectMessage', { deleteName: deleteName })
-        io.emit('updateUserState', { count: userCount, userList: userList })
+        io.emit('updateUserNumber', { count: userCount })
+        io.emit('updateUserList', { userList: userList })
       }
     }
   })
