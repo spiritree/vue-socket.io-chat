@@ -1,0 +1,2 @@
+build/*.js linguist-language=TypeScript
+config/*.js linguist-language=TypeScript

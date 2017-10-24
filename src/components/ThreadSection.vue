@@ -3,7 +3,7 @@
     <div class="thread-count">
       <i class="icon-people"></i>
       <h3>
-        总人数: {{ count }}
+        总人数: {{ $store.state.userCount }}
       </h3>
     </div>
     <ul class="thread-list">
@@ -22,15 +22,19 @@
 <script lang="ts">
 /// <reference path="../../socket.io.d.ts" />
 
+import Vue from 'vue'
 import Thread from './Thread.vue'
 import UserList from './UserList.vue'
 import { mapGetters } from 'vuex'
 
+interface Data {
+  count: string | number
+}
 
-export default {
+export default Vue.extend({
   name: 'ThreadSection',
   components: { Thread, UserList },
-  data(): any {
+  data(): Data {
     return {
       count: ''
     }
@@ -46,14 +50,14 @@ export default {
       this.$store.dispatch('switchThread', { id })
     },
     socketEvent(): void {
-      socket.on('transferUserNumber', (data: any) => {
-        const count = data.count
+      socket.on('transferUserState', (data: any) => {
+        let count = data.count
         this.$store.dispatch('updateUserNumber', {
           count: count
         })
       })
-      socket.on('updateUserNumber', (data: any) => {
-        const count = data.count
+      socket.on('updateUserState', (data: any) => {
+        let count = data.count
         this.$store.dispatch('updateUserNumber', {
           count: count
         })
@@ -67,8 +71,11 @@ export default {
     if (this.$store.state.userCount === 0) {
       this.$router.push({ path: '/' })
     }
+  },
+  mounted() {
+    console.log(this.$store)
   }
-}
+})
 </script>
 <style lang="scss" scoped>
     i.icon-people {

@@ -13,7 +13,7 @@ app.use('/static', express.static('dist/static'))
 
 // 读取根目录下的index.html
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, '../dist/index.html'))
+  res.sendFile(path.resolve(__dirname, '../dist/index.html'))
   // res.sendFile(__dirname + '../dist/index.html')
 })
 
@@ -21,22 +21,20 @@ app.get('/', (req, res) => {
 let userCount = 0
 
 // 在线用户列表
-let userList = []
+let userNameList = []
 
 // 在线用户信息
 let userInfoList = []
 
 io.on('connection', (socket) => {
-  console.log('find a person')
   socket.on('login', (data) => {
     userCount++
-    userList.push(data)
+    userNameList.push(data)
     let userInfo = { id: socket.id, name: data }
     userInfoList.push(userInfo)
     // 不是socket！是io！否则无法实时传递到每个客户端
     io.emit('onlineMessage', { name: data })
-    io.emit('transferUserNumber', { count: userCount })
-    io.emit('transferUserList', { userList: userList })
+    io.emit('transferUserState', { userNameList: userNameList, count: userCount })
   })
 
   socket.on('sendMessage', (data) => {
@@ -44,21 +42,19 @@ io.on('connection', (socket) => {
   })
 
   socket.on('disconnect', (data) => {
-    console.log('a person disconnected')
     for (let userInfo of userInfoList) {
       if (userInfo.id === socket.id) {
         const findDisconnectName = (value) => {
           return value === userInfo.name
         }
-        const deleteName = userList.find(findDisconnectName)
-        const deleteIndex = userList.findIndex((value) => {
+        const deleteName = userNameList.find(findDisconnectName)
+        const deleteIndex = userNameList.findIndex((value) => {
           return value === deleteName
         })
         userCount--
-        userList.splice(deleteIndex, 1)
+        userNameList.splice(deleteIndex, 1)
         io.emit('disconnectMessage', { deleteName: deleteName })
-        io.emit('updateUserNumber', { count: userCount })
-        io.emit('updateUserList', { userList: userList })
+        io.emit('updateUserState', { count: userCount, userNameList: userNameList })
       }
     }
   })

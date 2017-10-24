@@ -35,6 +35,10 @@ export default {
   [types.UPDATE_USERNUMBER] (state, { count }) {
     updateUserNumber(state, count)
   },
+
+  [types.UPDATE_USERNAMELIST] (state, { userNameList }) {
+    updateUserNameList(state, userNameList)
+  }
 }
 
 function createThread (state, id, name) {
@@ -74,4 +78,8 @@ function addUserNumber (state) {
 
 function updateUserNumber (state, count) {
   state.userCount = count
+}
+
+function updateUserNameList (state, userNameList) {
+  state.userNameList = userNameList
 }

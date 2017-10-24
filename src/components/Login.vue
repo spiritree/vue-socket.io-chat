@@ -11,9 +11,15 @@
 <script lang="ts">
 /// <reference path="../../socket.io.d.ts" />
 
-export default {
+import Vue from 'vue'
+
+interface Data {
+  name: string
+}
+
+export default Vue.extend({
   name: 'login',
-  data() :any {
+  data(): Data {
     return {
       name: '',
     }
@@ -24,19 +30,17 @@ export default {
         return
       }
       const name: string = this.name
-      let userNameList: Array<any> = []
-      userNameList.push(name)
       this.$store.dispatch('addUserNumber')
       localStorage.name = this.name
       socket.emit('login', localStorage.name)
       // localStorage存数组
-      localStorage.setItem('userNameList', JSON.stringify(userNameList))
+      // localStorage.setItem('userNameList', JSON.stringify(userNameList))
       this.$router.push({ path:'chat' })
     }
   },
   mounted() {
   }
-}
+})
 </script>
 
 <style lang="scss" scoped>
