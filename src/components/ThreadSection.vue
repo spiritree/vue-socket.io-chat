@@ -3,7 +3,7 @@
     <div class="thread-count">
       <i class="icon-people"></i>
       <h3>
-        总人数: {{ $store.state.userCount }}
+        总人数: {{ userCount }}
       </h3>
     </div>
     <ul class="thread-list">
@@ -42,7 +42,8 @@ export default Vue.extend({
   computed: {
     ...mapGetters([
       'threads',
-      'currentThread'
+      'currentThread',
+      'userCount'
     ])
   },
   methods: {
@@ -51,20 +52,20 @@ export default Vue.extend({
     },
     socketEvent(): void {
       socket.on('transferUserState', (data: any) => {
-        let count = data.count
+        const count = data.count
         this.$store.dispatch('updateUserNumber', {
           count: count
         })
       })
       socket.on('updateUserState', (data: any) => {
-        let count = data.count
+        const count = data.count
         this.$store.dispatch('updateUserNumber', {
           count: count
         })
       })
     }
   },
-  created() {
+  mounted() {
     this.socketEvent()
   },
   beforeMount() {
@@ -72,9 +73,6 @@ export default Vue.extend({
       this.$router.push({ path: '/' })
     }
   },
-  mounted() {
-    console.log(this.$store)
-  }
 })
 </script>
 <style lang="scss" scoped>

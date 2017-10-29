@@ -30,6 +30,11 @@ export default Vue.extend({
         return
       }
       const name: string = this.name
+      let userNameList: Array<any> = []
+      userNameList.push(name)
+      this.$store.dispatch('updateUserNameList', {
+        userNameList: userNameList
+      })
       this.$store.dispatch('addUserNumber')
       localStorage.name = this.name
       socket.emit('login', localStorage.name)

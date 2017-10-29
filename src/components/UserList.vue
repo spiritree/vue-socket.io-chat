@@ -1,7 +1,7 @@
 <template>
   <div>
-  <li 
-    v-for="user in $store.state.userNameList"
+  <li
+    v-for="user in userNameList"
     :key="user.id"
     class="thread-list-item">
     <h5 class="user-name">{{ user }}</h5>
@@ -13,31 +13,37 @@
 /// <reference path="../../socket.io.d.ts" />
 
 import Vue from 'vue'
+import { mapGetters } from 'vuex'
 
-interface Data {
-  userNameList: Array<any>
-}
+// interface Data {
+//   userNameList: Array<any>
+// }
 
 export default Vue.extend({
   name: 'UserList',
-  data(): Data {
-    return {
-      userNameList: []
-    }
+  // data(): Data {
+  //   return {
+  //     userNameList: []
+  //   }
+  // },
+  computed: {
+    ...mapGetters([
+      'userNameList'
+    ])
   },
-  created() {
-    this.connectEvent()
+  mounted() {
+    this.socketEvent()
   },
   methods: {
-    connectEvent(): void {
+    socketEvent(): void {
       socket.on('transferUserState', (data: any) => {
-        let userNameList = data.userNameList
+        const userNameList = data.userNameList
         this.$store.dispatch('updateUserNameList', {
           userNameList: userNameList
         })
       })
       socket.on('updateUserState', (data: any) => {
-        let userNameList = data.userNameList
+        const userNameList = data.userNameList
         this.$store.dispatch('updateUserNameList', {
           userNameList: userNameList
         })

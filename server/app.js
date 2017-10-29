@@ -33,15 +33,15 @@ io.on('connection', (socket) => {
     let userInfo = { id: socket.id, name: data }
     userInfoList.push(userInfo)
     // 不是socket！是io！否则无法实时传递到每个客户端
+    io.emit('transferUserState', { count: userCount, userNameList: userNameList })
     io.emit('onlineMessage', { name: data })
-    io.emit('transferUserState', { userNameList: userNameList, count: userCount })
   })
 
   socket.on('sendMessage', (data) => {
     io.emit('boardcastMessage', data)
   })
 
-  socket.on('disconnect', (data) => {
+  socket.on('disconnect', () => {
     for (let userInfo of userInfoList) {
       if (userInfo.id === socket.id) {
         const findDisconnectName = (value) => {
@@ -53,8 +53,8 @@ io.on('connection', (socket) => {
         })
         userCount--
         userNameList.splice(deleteIndex, 1)
-        io.emit('disconnectMessage', { deleteName: deleteName })
         io.emit('updateUserState', { count: userCount, userNameList: userNameList })
+        io.emit('disconnectMessage', { deleteName: deleteName })
       }
     }
   })

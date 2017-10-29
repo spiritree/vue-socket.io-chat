@@ -42,7 +42,7 @@ export default {
     }
   },
   methods: {
-    socketEvent(): void {      
+    socketEvent(): void {
       socket.on('boardcastMessage', (data) => {
         const text = data.text
         const name = data.name
@@ -82,11 +82,9 @@ export default {
       e.target.value = ''
     },
   },
-  created() {
+  mounted() {
     this.socketEvent()
   },
-  mounted() {
-  }
 }
 </script>
 <style lang="scss" scoped>
