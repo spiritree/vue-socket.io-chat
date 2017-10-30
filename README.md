@@ -7,12 +7,13 @@ Vue+Socket.io这个轮子已经有很多人造过了，为了不重复造轮子�
 - 后端+前端（TypeScript）
 
 希望能给大家一个渐进学习的经验。
-本项目地址：https://github.com/spiritree/vue-socket.io-chat/
-欢迎Star&Fork
+
+**预览地址：https://app.spiritree.me/**
 ## Vue-cli创建工程
 `npm install -g vue-cli`
 
 `vue init webpack my-project`
+
 `vue init ElemeFE/webpack-typescript my-project`（感谢饿了么分享的TypeScript的模板）
 
 这样就在当前目录下创建了完整的工程模板
@@ -109,11 +110,16 @@ declare namespace socket {
 ## Gulp+TypeScript（后端）
 
 `npm install gulp --save-dev`
+
 `npm install gulp-typescript --save-dev`
+
 `npm install @types/express --save-dev`
+
 `npm install @types/socket.io --save-dev`
 
 ### Server文件夹结构
+
+```
 ├── app.js
 ├── gulpfile.js
 ├── register.js
@@ -123,6 +129,7 @@ declare namespace socket {
 ├── tsconfig.json
 ├── type-app.js
 └── type-register.js
+```
 
 ### 添加tsconfig.json
 [TypeScript官方手册](https://www.tslang.cn/docs/handbook/tsconfig-json.html)
@@ -187,13 +194,18 @@ location / {
 
 ### 开启JavaScript服务端
 `git clone https://github.com/spiritree/vue-socket.io-chat.git`
+
 `npm install`
+
 `npm run server`
 
 ### 开启TypeScript服务器
 `npm install`
+
 `cd server`
+
 `gulp build`
+
 `npm run tsserver`
 
 浏览器访问 http://localhost:8989
