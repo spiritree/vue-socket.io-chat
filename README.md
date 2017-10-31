@@ -1,5 +1,8 @@
 # 教你用Vue渐进式搭建聊天室，从JavaScript=>TypeScript
 
+[![Build Status](https://img.shields.io/travis/spiritree/vue-socket.io-chat/master.svg?style=flat-square)](https://travis-ci.org/spiritree/vue-socket.io-chat)
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://raw.githubusercontent.com/spiritree/vue-socket.io-chat/master/LICENSE)
+
 ## 前言
 Vue+Socket.io这个轮子已经有很多人造过了，为了不重复造轮子，我将本项目以三阶段实现（大家可以在github中的Releases查看）：
 - 纯前端（Vuex）
@@ -9,6 +12,10 @@ Vue+Socket.io这个轮子已经有很多人造过了，为了不重复造轮子�
 希望能给大家一个渐进学习的经验。
 
 **预览地址：https://app.spiritree.me/**
+
+## 技术栈
+
+Vue + Webpack + TypeScript + Express + SCSS + Socket.io + Gulp
 ## Vue-cli创建工程
 `npm install -g vue-cli`
 
