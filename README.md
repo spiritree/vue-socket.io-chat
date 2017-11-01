@@ -3,6 +3,8 @@
 [![Build Status](https://img.shields.io/travis/spiritree/vue-socket.io-chat/master.svg?style=flat-square)](https://travis-ci.org/spiritree/vue-socket.io-chat)
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://raw.githubusercontent.com/spiritree/vue-socket.io-chat/master/LICENSE)
 
+## [English Document](https://github.com/spiritree/vue-socket.io-chat/blob/master/README-en.md)
+
 ## 前言
 Vue+Socket.io这个轮子已经有很多人造过了，为了不重复造轮子，我将本项目以三阶段实现（大家可以在github中的Releases查看）：
 - 纯前端（Vuex）
@@ -200,21 +202,37 @@ location / {
 **Github地址：https://github.com/spiritree/vue-socket.io-chat**
 
 ### 开启JavaScript服务端
+```bash
+
+# 从Github克隆本项目
 `git clone https://github.com/spiritree/vue-socket.io-chat.git`
 
+# 安装依赖
 `npm install`
 
+# 开启本地服务器
 `npm run server`
 
+```
 ### 开启TypeScript服务器
+```bash
+
+# 从Github克隆本项目
+`git clone https://github.com/spiritree/vue-socket.io-chat.git`
+
+# 安装依赖
 `npm install`
 
+# 切换目录
 `cd server`
 
+# 将TypeScript编译成JavaScript
 `gulp build`
 
+# 开启本地服务器
 `npm run tsserver`
 
+```
 浏览器访问 http://localhost:8989
 如遇在线列表不同步，刷新重进即可
 ## 预览
