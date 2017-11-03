@@ -2,6 +2,7 @@
 
 [![Build Status](https://img.shields.io/travis/spiritree/vue-socket.io-chat/master.svg?style=flat-square)](https://travis-ci.org/spiritree/vue-socket.io-chat)
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://raw.githubusercontent.com/spiritree/vue-socket.io-chat/master/LICENSE)
+[![](https://badge.juejin.im/entry/59f67b4051882546b15bc825/likes.svg?style=flat-square)](https://juejin.im/post/59f5de305188254eaf27d729)
 
 ## [English Document](https://github.com/spiritree/vue-socket.io-chat/blob/master/README-en.md)
 
