@@ -1,6 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var express = require("express");
+var Koa = require("koa");
+var Router = require("koa-router");
+var Serve = require("koa-static");
+var fs = require("fs");
 var http = require("http");
 var socketIo = require("socket.io");
 var path = require("path");
@@ -9,24 +12,35 @@ var Server = /** @class */ (function () {
         this.userCount = 0;
         this.userNameList = [];
         this.userInfoList = [];
-        this.createApp();
+        this.init();
         this.config();
         this.createServer();
         this.sockets();
         this.listen();
     }
-    Server.prototype.createApp = function () {
-        this.app = express();
+    Server.prototype.init = function () {
+        this.app = new Koa();
+        this.router = new Router();
     };
     Server.prototype.createServer = function () {
-        this.server = http.createServer(this.app);
+        this.port = process.env.PORT || Server.PORT;
+        this.server = http.createServer(this.app.callback()).listen(this.port);
     };
     Server.prototype.config = function () {
         this.port = process.env.PORT || Server.PORT;
-        this.app.use('/static', express.static('dist/static'));
-        this.app.get('/', function (req, res) {
-            res.sendFile(path.resolve(__dirname, '../dist/index.html'));
+        this.app.use(Serve(path.join(__dirname, '../dist')));
+        this.router.get('/', function (ctx, next) {
+            ctx.body = fs.readFile(path.resolve(__dirname, '../dist/index.html'), function (err, data) {
+                if (err) {
+                    console.log(err);
+                }
+                else {
+                    return data;
+                }
+            });
+            // next.sendFile(path.resolve(__dirname, '../dist/index.html'))
         });
+        this.app.use(this.router.routes());
     };
     Server.prototype.sockets = function () {
         this.io = socketIo(this.server);
