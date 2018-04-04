@@ -13,6 +13,7 @@
     "tsserver": "node build/build.js&&node server/type-register.js"
   },
   "dependencies": {
+    "express": "^4.15.2",
     "koa": "^2.4.1",
     "koa-router": "^7.3.0",
     "koa-static": "^4.0.1",
