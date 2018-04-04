@@ -19,7 +19,8 @@ Vue+Socket.io这个轮子已经有很多人造过了，为了不重复造轮子�
 ## 技术栈
 
 Vue + Webpack + TypeScript + Express + SCSS + Socket.io + Gulp
-## Vue-cli创建工程
+
+<details><summary>Vue-cli创建工程</summary><br>
 `npm install -g vue-cli`
 
 `vue init webpack my-project`
@@ -27,7 +28,11 @@ Vue + Webpack + TypeScript + Express + SCSS + Socket.io + Gulp
 `vue init ElemeFE/webpack-typescript my-project`（感谢饿了么分享的TypeScript的模板）
 
 这样就在当前目录下创建了完整的工程模板
-## Socket.io
+
+<br>
+</details>
+
+<details><summary>Socket.io</summary><br>
 在Server端（Express）
 
 ```javascript
@@ -66,7 +71,11 @@ Client端常用API：
 
 `socket.on()`：监听服务端发来的信息
 
-## TypeScript教程
+<br>
+</details>
+
+<details><summary>TypeScript</summary><br>
+
 关于TypeScript的基本知识，可以直接看xcatliu整理的教程，简单易懂，有Java/C#基础就可快速上手。
 [TypeScript 入门教程](https://github.com/xcatliu/typescript-tutorial)
 
@@ -117,7 +126,10 @@ declare namespace socket {
 
 ![vuechat2.png](https://user-gold-cdn.xitu.io/2017/10/29/730cb84d8274c4a7bbb6708aeb5723ce)
 
-## Gulp+TypeScript（后端）
+<br>
+</details>
+
+<details><summary>Gulp+TypeScript（后端）</summary><br>
 
 `npm install gulp --save-dev`
 
@@ -175,7 +187,10 @@ gulp.task("build", function () {
 
 ![vuechat3.png](https://user-gold-cdn.xitu.io/2017/10/29/4866e9bbda07ba78cab6d47767e1b581)
 
-## 部署到服务器
+<br>
+</details>
+
+<details><summary>部署</summary><br>
 
 Linux+Nginx的组合，可以一键部署虚拟主机
 [OneinStack](https://oneinstack.com/)
@@ -196,6 +211,9 @@ location / {
 	proxy_set_header Host $host;
  }
 ```
+
+<br>
+</details>
 
 ## 如何使用
 **预览地址：https://app.spiritree.me/**
